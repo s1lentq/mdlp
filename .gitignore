@@ -1,0 +1,17 @@
+x64
+x86
+*.bat
+*.log
+*.lnk
+**/msvc/**/Debug*
+**/msvc/**/Release*
+**/msvc/*.sdf
+**/msvc/*.opensdf
+**/msvc/*.user
+**/msvc/*.suo
+**/msvc/*.db
+**/msvc/*.opendb
+**/msvc/*.txt
+**/msvc/*.amplxeproj
+**/msvc/.vs
+**/msvc/ipch
