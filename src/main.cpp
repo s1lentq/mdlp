@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "studio.hpp"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
@@ -17,8 +17,7 @@ int main(int argc, char* argv[])
 	fseek(fp, 0, SEEK_SET);
 
 	char *data = (char *)malloc(size);
-	if (!data)
-	{
+	if (!data) {
 		fclose(fp);
 		printf("Can't allocate memory\n");
 		return -1;
@@ -27,7 +26,8 @@ int main(int argc, char* argv[])
 	fread(data, size, 1, fp);
 	fclose(fp);
 
-	if (*(unsigned __int32 *)data != IDSTUDIOHEADER) {
+	// check data header
+	if (*(unsigned int *)data != IDSTUDIOHEADER) {
 		printf("The file is not a model.\n");
 		free(data);
 		return -1;
@@ -45,6 +45,13 @@ int main(int argc, char* argv[])
 	char szFileName[_MAX_PATH];
 	strncpy(szFileName, argv[1], sizeof(szFileName) - 1);
 	szFileName[sizeof(szFileName) - 1] = '\0';
+
+	// strip .mdl
+	char *pos = strstr(szFileName, ".mdl");
+	if (pos) {
+		*pos = '\0';
+	}
+
 	strcat(szFileName, "_patch.mdl");
 
 	fp = fopen(szFileName, "wb");
